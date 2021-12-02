@@ -5,8 +5,28 @@ import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 var handleVideoSearch = (q) => {
- 
-  //TODO:  Write an asynchronous action to handle a video search!
+
+  return (dispatch) => {
+    searchYouTube({
+      key: YOUTUBE_API_KEY,
+      query: q
+    }, function(videos) {
+      changeVideoList(videos);
+      changeVideo(videos[0]);
+    });
+  };
+  // TODO:  Write an asynchronous action to handle a video search!
+  // const newVideos = searchYouTube({
+  //   key: YOUTUBE_API_KEY,
+  //   query: q
+  // });
+
+  // return ({
+  //   //TODO:  Return some action object to change the currently playing video.
+  //   type: 'CHANGE_VIDEO_AND_VIDEO_LIST',
+  //   videos: changeVideoList(newVideos),
+  //   currentVideo: changeVideo(newVideos[0])
+  // });
 };
 
 export default handleVideoSearch;
